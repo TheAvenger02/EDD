@@ -10,7 +10,7 @@ public class EVA115COPIAARREGLOS {
         int[] arrayDatos = new int[100];
         //Copia de los valores almecenados en el arreglo
         int[] arrayCopia = new int[arrayDatos.length];
-        //Llenar el arregl con números aleatorios
+        //Llenar el arreglo con números aleatorios
         llenar(arrayDatos);
         //Imprimir el arreglo
         imprimir(arrayDatos);
