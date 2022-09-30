@@ -53,8 +53,29 @@ public class Lista {
         return cont;
     }
     
-    public void agregarEn(int valor, int pos){
-        
+    public void insertarEn(int valor, int pos) throws Exception{
+        int cantNodos = tamaLista();
+        //Insertar en una posición no válida
+        //Posiciones negativas
+        //Posiciones mayores a la cantidad de elementos
+        if(pos < 0) //Posiciones negativas
+            throw new Exception("No puede insertarse un nodo en una posición negativa");
+        else if(pos >= cantNodos)//Posiciones mayores a la cantidad de elementos
+            throw new Exception(pos + " no es una poisción valida en la lista");
+        else{
+            Nodo nuevoNodo = new Nodo(valor);
+            if(pos == 0){ //Insetar al inicio de la lista
+                nuevoNodo.setSiguiente(inicio);
+                inicio = nuevoNodo;
+            }else{
+                Nodo temp = inicio;
+                int cont = 0;
+                while(cont < (pos-1)){
+                     temp = temp.getSiguiente();
+                     cont++;
+                }//Hacer reconexión
+                System.out.println("");
+            }
+        }
     }
-    
 }
