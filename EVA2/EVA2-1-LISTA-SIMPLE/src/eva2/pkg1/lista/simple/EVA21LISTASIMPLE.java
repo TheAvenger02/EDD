@@ -11,11 +11,14 @@ public class EVA21LISTASIMPLE {
         miLista.agregar(20);//1
         miLista.agregar(30);//2
         miLista.agregar(40);//3 <------
+        miLista.agregar(50);//4
         try {
             miLista.insertarEn(70, 2);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        miLista.imprimir();
+        miLista.vaciarLista();
         miLista.imprimir();
         }    
             //int[] arreglo = new int[1000000];
