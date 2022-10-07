@@ -7,15 +7,24 @@ package eva2.pkg1.lista.simple;
 public class Lista {
     private Nodo inicio;
     private Nodo fin;
+    private int cont;
 
     //Por default, la lista está vacía
     public Lista() {
         this.inicio = null; //No hay nodos en la lista.
         this.fin = null;
+        this.cont = 0;
+    }
+    
+    public boolean listaVacia(){
+        if(inicio == null)
+           return true;
+        else
+            return false;
     }
     
     public void imprimir(){
-        if(inicio == null)
+        if(listaVacia())
             System.out.println("La lista está vacía.");
         else{
             Nodo temp = inicio;
@@ -25,7 +34,6 @@ public class Lista {
             }
         }
     }
-    
     //Agregar un nodo al final de la lista
     public void agregar(int valor){
         Nodo nuevoNodo = new Nodo(valor);
@@ -46,15 +54,16 @@ public class Lista {
             fin.setSiguiente(nuevoNodo);
             fin = nuevoNodo;
         }
+        cont++;
     }
     public int tamaLista(){
-        int cont = 0;
+       /* int cont = 0;
         Nodo temp = inicio;
         while(temp != null){ //Moverse mientras el siguiente sea distinto de null
                 temp = temp.getSiguiente();
                 cont++;
-        }
-        return cont;
+        }¨*/
+        return this.cont;
     }
     
     public void insertarEn(int valor, int pos) throws Exception{
@@ -83,11 +92,13 @@ public class Lista {
                 System.out.println("");
             }
         }
+        this.cont++;
     }
     
     public void vaciarLista(){
         inicio = null;
         fin = null;
+        cont = 0;
     }
     
     public void borrarEn(int pos) throws Exception{
@@ -100,22 +111,53 @@ public class Lista {
         else if(pos >= cantNodos)//Posiciones mayores a la cantidad de elementos
             throw new Exception(pos + " no es una posición valida en la lista");
         else{
-            Nodo nuevoNodo = new Nodo(valor);
+            //borrar primer nodo (Listo)
+            //borrar el intermedio
+            //borrar el final
             if(pos == 0){ //Insetar al inicio de la lista
-                nuevoNodo.setSiguiente(inicio);
-                inicio = nuevoNodo;
+                inicio = inicio.getSiguiente();
             }else{
                 Nodo temp = inicio;
                 int cont = 0;
-                while(cont < (pos-1)){
+                while(cont <= (pos-1)){
                      temp = temp.getSiguiente();
                      cont++;
-                }//Hacer reconexión
-                nuevoNodo.setSiguiente(temp.getSiguiente());
-                temp.setSiguiente(nuevoNodo);
-                System.out.println("");
+                }
+                Nodo objSig = temp.getSiguiente();
+                temp.setSiguiente(objSig.getSiguiente());
+                //Hacer reconexión
+                if (pos == (cantNodos - 1)) {//Reconectar fin
+                        fin = temp;
+               }
             }
         }
+        this.cont--;
     }
+    
+    public int obtenerValorEn(int pos) throws Exception{
+            int cantNodos = tamaLista();
+        //Posición no válida
+        //Posiciones negativas
+        //Posiciones mayores a la cantidad de elementos
+        if(pos < 0) //Posiciones negativas
+            throw new Exception("No puede insertarse un nodo en una posición negativa");
+        else if(pos >= cantNodos)//Posiciones mayores a la cantidad de elementos
+            throw new Exception(pos + " no es una posición valida en la lista");
+        else{
+            if(pos == 0){ //Insetar al inicio de la lista
+                inicio = inicio.getSiguiente();
+            }else{
+                Nodo temp = inicio;
+                int cont = 0;
+                while(cont < pos){
+                     temp = temp.getSiguiente();
+                     cont++;
+                }
+                valor = temp.getValor();
+            }
+        }
+            return valor;
+    }
+        
     
 }
