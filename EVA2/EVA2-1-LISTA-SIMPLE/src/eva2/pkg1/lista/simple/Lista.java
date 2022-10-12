@@ -136,6 +136,7 @@ public class Lista {
     
     public int obtenerValorEn(int pos) throws Exception{
             int cantNodos = tamaLista();
+            int valor = 0;
         //Posición no válida
         //Posiciones negativas
         //Posiciones mayores a la cantidad de elementos
