@@ -88,6 +88,68 @@ public class ListaDoble {
             return valor;
     }
     
+    public void insertarEn(int valor, int pos) throws Exception{
+        int cantNodos = tamaLista();
+        //Insertar en una posición no válida
+        //Posiciones negativas
+        //Posiciones mayores a la cantidad de elementos
+        if(pos < 0) //Posiciones negativas
+            throw new Exception("No puede insertarse un nodo en una posición negativa");
+        else if(pos >= cantNodos)//Posiciones mayores a la cantidad de elementos
+            throw new Exception(pos + " no es una posición valida en la lista");
+        else{
+            Nodo nuevoNodo = new Nodo(valor);
+            if(pos == 0){ //Insetar al inicio de la lista
+                nuevoNodo.setSiguiente(inicio);
+                inicio.setPrevio(nuevoNodo);
+                inicio = nuevoNodo;
+            }else{
+                Nodo temp = inicio;
+                int cont = 0;
+                while(cont < pos){
+                     temp = temp.getSiguiente();
+                     cont++;
+                }//Hacer reconexión
+                nuevoNodo.setSiguiente(temp);
+                nuevoNodo.setPrevio(temp.getPrevio());
+                temp.getPrevio().setSiguiente(nuevoNodo);
+                temp.setPrevio(nuevoNodo);
+                System.out.println("");
+            }
+        }
+        this.cont++;
+    }
     
-    
+    public void borrarEn(int pos) throws Exception{
+            int cantNodos = tamaLista();
+        //Borrar en una posición no válida
+        //Posiciones negativas
+        //Posiciones mayores a la cantidad de elementos
+        if(pos < 0) //Posiciones negativas
+            throw new Exception("No puede borrarse un nodo en una posición negativa");
+        else if(pos >= cantNodos)//Posiciones mayores a la cantidad de elementos
+            throw new Exception(pos + " no es una posición valida en la lista");
+        else{
+            //Borrar primer nodo
+            //Borrar el intermedio
+            //Borrar el final
+            if(pos == 0){ //Insertar al inicio de la lista
+                inicio = inicio.getSiguiente();
+            }else{
+                Nodo temp = inicio;
+                int cont = 0;
+                while(cont <= pos){
+                     temp = temp.getSiguiente();
+                     cont++;
+                }
+                Nodo objSig = temp.getSiguiente();
+                temp.setSiguiente(objSig.getSiguiente());
+                //Hacer reconexión
+                if (pos == (cantNodos - 1)) {//Reconectar fin
+                        fin = temp;
+               }
+            }
+        }
+        this.cont--;
+    }   
 }

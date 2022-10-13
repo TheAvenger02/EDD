@@ -111,10 +111,10 @@ public class Lista {
         else if(pos >= cantNodos)//Posiciones mayores a la cantidad de elementos
             throw new Exception(pos + " no es una posición valida en la lista");
         else{
-            //borrar primer nodo (Listo)
-            //borrar el intermedio
-            //borrar el final
-            if(pos == 0){ //Insetar al inicio de la lista
+            //Borrar primer nodo (Listo)
+            //Borrar el intermedio
+            //Borrar el final
+            if(pos == 0){ //Insertar al inicio de la lista
                 inicio = inicio.getSiguiente();
             }else{
                 Nodo temp = inicio;
