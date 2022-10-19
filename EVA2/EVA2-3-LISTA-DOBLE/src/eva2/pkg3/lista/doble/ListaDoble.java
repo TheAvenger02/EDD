@@ -125,31 +125,37 @@ public class ListaDoble {
         //Borrar en una posición no válida
         //Posiciones negativas
         //Posiciones mayores a la cantidad de elementos
-        if(pos < 0) //Posiciones negativas
-            throw new Exception("No puede borrarse un nodo en una posición negativa");
-        else if(pos >= cantNodos)//Posiciones mayores a la cantidad de elementos
-            throw new Exception(pos + " no es una posición valida en la lista");
-        else{
-            //Borrar primer nodo
-            //Borrar el intermedio
-            //Borrar el final
-            if(pos == 0){ //Insertar al inicio de la lista
-                inicio = inicio.getSiguiente();
-            }else{
-                Nodo temp = inicio;
-                int cont = 0;
-                while(cont <= pos){
-                     temp = temp.getSiguiente();
-                     cont++;
-                }
-                Nodo objSig = temp.getSiguiente();
-                temp.setSiguiente(objSig.getSiguiente());
-                //Hacer reconexión
-                if (pos == (cantNodos - 1)) {//Reconectar fin
+        if (pos < 0) {//Posiciones negativas
+            throw new Exception("No puede borrar un nodo en una posición negativa");
+        } else if (pos >= cantNodos) {//BORRAR EN POSICIONES NO VÁLIDAS
+            throw new Exception(pos + " no es una posición válida");
+        } else {
+            if (cantNodos == 1) {//Borrar el primer nodo
+                vaciarLista();
+            } else {
+                //Borrar primer nodo (Listo)
+                //Borrar el intermedio
+                //Borrar el final
+                if (pos == 0) {
+                    inicio = inicio.getSiguiente();
+                } else {
+                    Nodo temp = inicio;
+                    int cont = 0;
+                    while (cont < pos) {
+                        temp = temp.getSiguiente();
+                        cont++;
+                    }
+                    Nodo objSig = temp.getSiguiente();
+                    Nodo objPrev = temp.getPrevio();
+                    temp.setSiguiente(objSig.getSiguiente());
+                    temp.setPrevio(objPrev.getPrevio());
+
+                    if (pos == (cantNodos - 1)) {//Reconectar fin
                         fin = temp;
-               }
+                    }
+                }
+                this.cont--;
             }
         }
-        this.cont--;
     }   
 }

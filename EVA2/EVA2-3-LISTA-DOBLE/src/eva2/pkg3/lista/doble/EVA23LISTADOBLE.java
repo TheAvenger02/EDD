@@ -23,5 +23,15 @@ public class EVA23LISTADOBLE {
         } catch (Exception ex) {
             Logger.getLogger(EVA23LISTADOBLE.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        listaDoble.imprimir();
+        
+        try {
+            listaDoble.borrarEn(5);
+        } catch (Exception ex) {
+            Logger.getLogger(EVA23LISTADOBLE.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        listaDoble.imprimir();    
     }
 }
