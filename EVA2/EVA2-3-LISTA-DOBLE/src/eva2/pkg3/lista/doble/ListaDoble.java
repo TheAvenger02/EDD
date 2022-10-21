@@ -110,6 +110,15 @@ public class ListaDoble {
                      temp = temp.getSiguiente();
                      cont++;
                 }//Hacer reconexión
+                /*
+                Nodo objtPrev = temp.getSiguiente();
+                temp.setSiguiente(objSig.getSiguiente();
+                objPrev.setSiguiente(objSig);
+                if(pos == (cantNodos - 1)){
+                fin = objPrev;
+                }
+                
+                        */
                 nuevoNodo.setSiguiente(temp);
                 nuevoNodo.setPrevio(temp.getPrevio());
                 temp.getPrevio().setSiguiente(nuevoNodo);

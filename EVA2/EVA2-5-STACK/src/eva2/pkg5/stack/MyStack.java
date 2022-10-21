@@ -88,13 +88,17 @@ public class MyStack {
             return valor;
     }
     
+    public void push(int valor){
+        agregar(valor);
+    }
+    
     public Integer peek(){ //Peek -> Lee el elemento en la cima
         //Verificar si la lista está vacía
         //Si no está vacía, regresar el valor
         if(listaVacia()){
             return null;
         }else{
-            return inicio.getValor();
+            return fin.getValor();
         }
     }
     
@@ -104,9 +108,9 @@ public class MyStack {
         if(listaVacia()){
             return null;
         }else{
-            int valor = inicio.getValor();
-            //Borra el nodo
-            borrarEn(0);
+            int valor = fin.getValor();
+            //Borra el último nodo de la pila
+            borrarEn(tamaLista()-1);
             return valor;
         }
     }
