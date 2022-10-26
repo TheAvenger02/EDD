@@ -31,20 +31,20 @@ public class Nodo {
         this.valor = valor;
     }
 
-    public Nodo getSiguiente() {
+    public Nodo getDerecha() {
         return derecha;
     }
 
-    public void setSiguiente(Nodo siguiente) {
-        this.derecha = siguiente;
+    public void setDerecha(Nodo derecha) {
+        this.derecha = derecha;
     }
 
-    public Nodo getPrevio() {
+    public Nodo getIzquierda() {
         return izquierda;
     }
 
-    public void setPrevio(Nodo previo) {
-        this.izquierda = previo;
+    public void setIzquierda(Nodo izquierda) {
+        this.izquierda = izquierda;
     }
         
 }
