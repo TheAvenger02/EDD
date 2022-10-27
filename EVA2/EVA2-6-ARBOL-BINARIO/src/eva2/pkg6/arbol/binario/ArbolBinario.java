@@ -64,4 +64,31 @@ public class ArbolBinario {
             inOrderRecu(nodo.getDerecha());
         }
     }
+    //Pre order -> Valor, Izq, Der -> Método público
+    public void preOrder(){
+        preOrderRecu(root);
+        System.out.println("");
+    }
+    //Método privado recursivo
+    private void preOrderRecu(Nodo nodo){
+        if(nodo != null){
+            System.out.print(nodo.getValor() + " - ");
+            preOrderRecu(nodo.getIzquierda());
+            preOrderRecu(nodo.getDerecha());
+        }
+    }
+    //Pos order -> Izq,  der, valor -> Método público
+    public void posOrder(){
+        posOrderRecu(root);
+        System.out.println("");
+    }
+    //Método privado recursivo
+    private void posOrderRecu(Nodo nodo){
+        if(nodo != null){
+            posOrderRecu(nodo.getIzquierda());
+            posOrderRecu(nodo.getDerecha());
+            System.out.print(nodo.getValor() + " - ");
+        }
+    }
+    
 }

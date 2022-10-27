@@ -16,6 +16,8 @@ public class EVA26ARBOLBINARIO {
         arbol.agregar(17);
         arbol.agregar(20);
         arbol.agregar(16);
-        arbol.inOrder();                             
+        arbol.inOrder();
+        arbol.preOrder();
+        arbol.posOrder();
     }   
 }
