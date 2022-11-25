@@ -1,5 +1,4 @@
 package eva3.pkg1.ordenamiento;
-
 /**
  *
  * @author emiliomurillo
@@ -13,9 +12,13 @@ public class EVA31ORDENAMIENTO {
         int[] arregloDatos = new int[10];
         int[] arregloSel = new int[arregloDatos.length];
         int[] arregloIns = new int[arregloDatos.length];
+        int[] arregloQ = new int[arregloDatos.length];
+        int[] arregloQuick = new int[arregloDatos.length];
+        
         System.out.println("Arreglo original: ");
         llenar(arregloDatos);
         imprimir(arregloDatos);
+        
         System.out.println("Selection Sort");
         copiar(arregloDatos, arregloSel);
         imprimir(arregloSel);
@@ -24,6 +27,7 @@ public class EVA31ORDENAMIENTO {
         double fin = System.nanoTime();
         imprimir(arregloSel);
         System.out.println("Selection Sort = " + (fin - ini));
+        
         System.out.println("Insertion Sort");
         copiar(arregloDatos, arregloIns);
         imprimir(arregloIns);
@@ -32,6 +36,26 @@ public class EVA31ORDENAMIENTO {
         fin = System.nanoTime();
         imprimir(arregloIns);
         System.out.println("Insertion Sort = " + (fin - ini));
+        
+        System.out.println("Quick Sort");
+        copiar(arregloDatos, arregloQ);
+        imprimir(arregloQ);
+        ini = System.nanoTime();
+        quickSort(arregloQ);
+        fin = System.nanoTime();
+        imprimir(arregloQ);
+        System.out.println("Quick Sort = " + (fin - ini));
+        
+        System.out.println("Quick Sort 2.0");
+        copiar(arregloDatos, arregloQuick);
+        imprimir(arregloQuick);
+        ini = System.nanoTime();
+        QuickSort qs = new QuickSort();
+        qs.ordenar(arregloQuick, 0, (arregloQuick.length-1));
+        fin = System.nanoTime();
+        imprimir(arregloQuick);
+        System.out.println("Quick Sort 2.0 = " + (fin - ini));
+        
         
     }
     //LLENAR ARREGLO
@@ -97,7 +121,48 @@ public class EVA31ORDENAMIENTO {
             }
             arreglo[insP] = temp;
         }
-        
+    }
+    //QuickSort
+    public static void quickSort(int[] arreglo){
+        quickSortRec(arreglo, 0, arreglo.length-1);
     }
     
+    private static void quickSortRec(int[] arreglo, int ini, int fin){
+     int pivote, big, small, temp;
+    //Seleccionar pivote (primer elemento)
+     pivote = ini;
+     big = ini;
+     small = fin;
+     
+        if(ini < fin){
+           while(big < small){ //Los índices se cruzaron
+              //Mover los índices
+              //Buscar los elementos más grandes que el pivote
+              while(arreglo[big] <= arreglo[pivote] && (big < small)) 
+                  big++;
+              //Buscar los elementos más pequeños que el pivote     
+              while(arreglo[small]> arreglo[pivote])
+                  small--;
+              //Verificamos que no hayan cruzado los índices
+                 //Intercambiar
+              if(big < small){
+                  temp = arreglo[big];
+                  arreglo[big] = arreglo[small];
+                  arreglo[small] = temp;
+              }
+           }
+
+           //Mover el pivote
+           //Swap pivote con small
+           temp = arreglo[pivote];
+           arreglo[pivote] = arreglo[small];
+           arreglo[small] = temp;
+           pivote = small;
+
+           //Repite el proceso para cada mitad
+           //Llamada recursiva
+           quickSortRec(arreglo, ini, pivote-1);
+           quickSortRec(arreglo, pivote+1, fin);
+        }
+    }
 }
