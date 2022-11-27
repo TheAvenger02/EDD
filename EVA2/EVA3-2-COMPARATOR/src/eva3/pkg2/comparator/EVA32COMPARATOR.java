@@ -44,19 +44,28 @@ public class EVA32COMPARATOR {
         listaPersonas.add(new Persona("Mónica", "Molina", "Rodriguez",41, 150.0));
         listaPersonas.add(new Persona("Esteban", "Antunez", "Garcia",43, 90.0));       
 
-        //Comparator para salarios y apellido paterno
-        Comparator ordenarDouble = new Comparator() {
+        //Comparator para salarios
+        /* Comparator ordenarDouble = new Comparator() {
             @Override
-            public double compare(Object o1, Object o2) {
+            public int compare(Object o1, Object o2) {
                 Double val1 = (Double)o1;
                 Double val2 = (Double)o2;
-                return val2 - val1;
+                return Double.compare(val1, val2);
             }
         };
-        listaPersonas.sort(ordenar);
+        listaPersonas.sort(ordenarDouble);
+        System.out.println(listaPersonas);
+        */
+        //Comparator para apellido paterno
+        /* Comparator ordenarApellido = new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                
+            }
+        } */
         for(Iterator<Persona> iterador = listaPersonas.iterator(); iterador.hasNext();){
             Persona perso = iterador.next();
-            System.out.println(perso.getNombre());
+            System.out.println(perso.getPaterno());
         }
         
     }
@@ -75,6 +84,22 @@ class Persona{
         this.paterno = paterno;
         this.materno = materno;
         this.edad = edad;
+        this.salario = salario;
+    }
+
+    public String getPaterno() {
+        return paterno;
+    }
+
+    public void setPaterno(String paterno) {
+        this.paterno = paterno;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
         this.salario = salario;
     }
 
